@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <h:form>
+        <h:inputText id="nombreUsuario" value="#{usuario.usuario.nombre}" required="required"></h:inputText><br/>
+        <h:inputText id="apellidoUsuario" value="#{usuario.usuario.apellido}" required="required"></h:inputText><br/>
+        <h:inputText id="claveUsuario" value="#{usuario.usuario.clave}" required="required"></h:inputText><br/>
+        <h:selectOneMenu id="rolUsuario" value="#{usuario.rolAux}">
+            <f:selectItems value="#{usuario.rolFacade.findAll()}" var="item" 
+                           itemValue="#{item.idrol}" itemLabel="#{item.nombre}"/>
+        </h:selectOneMenu><br/>
+        <h:selectOneMenu id="estadoUsuario" value="#{usuario.estadoUsuarioAux}">
+            <f:selectItems value="#{usuario.estadoUsuarioFacade.findAll()}" var="item" 
+                           itemValue="#{item.idestadoCliente}" itemLabel="#{item.nombreEstado}"/>
+        </h:selectOneMenu><br/>
+        <h:commandButton value="agregar" action="#{usuario.crearUsuario()}"></h:commandButton><br/>
+    </h:form>
+
+
+    <h:body>
+        <h:dataTable class="table" id="tabla_inventario" value="#{usuario.usuarioFacade.findAll()}" var="item">
+            <h:column>
+                <f:facet name="header"> Id usuario </f:facet>
+                <h:outputText value="#{item.idusuario}"></h:outputText>                
+            </h:column>
+            <h:column>
+                <f:facet name="header"> Nombre </f:facet>
+                <h:outputText value="#{item.nombre}"></h:outputText>                
+            </h:column>
+            <h:column>
+                <f:facet name="header"> Apellido </f:facet>
+                <h:outputText value="#{item.apellido}"></h:outputText>                
+            </h:column>
+            <h:column>
+                <f:facet name="header"> Rol </f:facet>
+                <h:outputText value="#{item.rolIdrol.nombre}"></h:outputText>                
+            </h:column>
+            <h:column>
+                <f:facet name="header"> Estado </f:facet>
+                <h:outputText value="#{item.estadoUsuarioIdestadoCliente.nombreEstado}"></h:outputText>                
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
+

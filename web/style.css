@@ -1,0 +1,1647 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body-bienvenida {
+    transition: none;
+}
+
+body {
+    font-family: Tw Cen MT;
+    transition: all 0.4s ease;
+    background-color: #f6f6f6;
+}
+
+a {
+    font-style: normal;
+    text-decoration: none;
+    color: #000000;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #fcd306;
+    border-radius: 20px;
+}
+
+
+/*--------------------------------------------------------------
+# Menu
+--------------------------------------------------------------*/
+
+.navbar {
+    display: flex !important;
+}
+
+.navbar-expand-lg .navbar-collapse {
+    justify-content: flex-end;
+}
+
+.logoMetalideas {
+    width: 190px;
+}
+
+#header {
+    transition: all 0.5s ease;
+    position: fixed;
+    width: 100%;
+    background-color: snow;
+    color: #000000;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgb(17, 17, 17);
+    z-index: 100;
+}
+
+.nav-link {
+    padding: 4px;
+    border-radius: 10px 10px;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.nav-link:hover {
+    background-color: #000000;
+    color: snow !important;
+}
+
+.row {
+    margin-right: 0 !important;
+}
+
+.col-3 {
+    padding: 0px;
+}
+
+/*header administrador*/
+#header-administrador {
+    transition: all 0.4s ease;
+    width: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgb(17, 17, 17);
+    z-index: 100;
+}
+
+/*--------------------------------------------------------------
+# inicio Section
+--------------------------------------------------------------*/
+
+#inicio {
+    background-image: url("img/inicio/professional-industrial-welder-welding-metal-parts-in-metalworking-factory.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.btn-close {
+    color: snow;
+}
+
+
+#container-inf {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+}
+
+#inf {
+    height: 400px;
+    width: 500px;
+    box-shadow: 0px 0px 30px #06152573;
+    border-radius: 30px 0px 0px 30px;
+    opacity: 1;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+#titulo-inf h1 {
+    font-weight: bold;
+    color: snow;
+    width: 80%;
+    padding: 20px;
+    font-size: 24px;
+}
+
+#titulo-inf {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+#cont-inf {
+    color: snow;
+    padding-right: 15%;
+}
+
+#linea {
+    width: 5px;
+    height: 100%;
+    background-color: #fcd306;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+#social {
+    margin: 20px 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/*--------------------------------------------------------------
+# Productos Section
+--------------------------------------------------------------*/
+#productos {
+    width: 100%;
+    height: 100vh;
+}
+
+.ti-productos {
+    width: 80%;
+    margin-inline: 15%;
+    margin-top: 7%;
+    margin-bottom: 3%;
+    display: flex;
+    align-items: center;
+}
+
+.ti-productos h1 {
+    font-weight: bold;
+    text-shadow: 0px 0px 12px black;
+
+}
+
+.lin-hor {
+    width: 60%;
+    height: 5px;
+    background-color: #fcd306;
+    box-shadow: 2px 0px 8px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.slider_hor {
+    width: 100%;
+    padding: 40px;
+    height: calc(100vh - 245px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s all ease-out;
+}
+
+.slider_hor .btn-scroll {
+    display: flex;
+    border: 2px solid snow;
+    border-radius: 50%;
+    align-items: center;
+    height: 40px;
+    z-index: 2;
+    box-shadow: 0px 0px 20px 7px #fcd306;
+    background-color: #373734;
+    color: snow;
+    transition: 0.1s all ease-out;
+}
+
+.slider_hor .btn-scroll:hover {
+    border: 2px solid black;
+    z-index: 2;
+    box-shadow: 0px 0px 20px 7px black;
+    background-color: #373734;
+    color: black;
+}
+
+#btn-scroll-izq {
+    opacity: 0;
+}
+
+
+.slider_hor button i {
+    width: 40px;
+    font-size: 30px;
+    padding: 0px 5px;
+}
+
+.contenedor-item {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    transition: 0.5s all ease-out;
+}
+
+/* card */
+.item-producto {
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a17de;
+    color: snow;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 430px;
+    box-shadow: 2px 0px 20px 2px black;
+}
+
+.item-producto img {
+    height: 270px;
+    border-radius: 20px 20px 0px 0px;
+    max-height: 270px;
+}
+
+.item-body {
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-primary {
+    color: #fcd306;
+    background-color: transparent;
+    border-color: #fcd306;
+    border-radius: 40px;
+    display: block;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #fcd306;
+    border-color: #fcd306;
+    font-weight: bold;
+}
+
+
+/*--------------------------------------------------------------
+# servicios Section
+--------------------------------------------------------------*/
+
+#servicios {
+    background-image: url("img/servicios/descarga.png");
+    width: 100%;
+    height: 100vh;
+
+    /* efecto parallax */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#ti-servicios {
+    width: 80%;
+    margin-inline: 15%;
+    padding-top: 5%;
+    padding-bottom: 3%;
+}
+
+#ti-servicios h1 {
+    color: snow;
+    font-weight: bold;
+    padding-bottom: 3%;
+}
+
+#cont-serv {
+    width: 90%;
+    height: 65%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    opacity: 1;
+    backdrop-filter: blur(20px);
+    padding: 80px 40px;
+    border-radius: 30px;
+
+}
+
+.item_serv {
+    background-color: #1E1D12;
+    display: flex;
+    padding: 30px;
+    border-radius: 20px;
+    width: 20%;
+    height: auto;
+    align-items: center;
+}
+
+#titulo-serv {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.item_serv h2 {
+    padding: 5px;
+    font-weight: bold;
+    color: snow;
+    font-size: 18px;
+    width: 80%;
+}
+
+.item_serv p {
+    color: snow;
+    font-size: 15px;
+}
+
+.item_serv a {
+    color: #fcd306;
+    border-radius: 20px;
+    border: 1px solid #fcd306;
+    color: #fcd306;
+    padding: 8px;
+}
+
+.item_serv a:hover {
+    color: snow;
+    background-color: #fcd306;
+}
+
+.cont-item-serv {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cont-item-serv p {
+    max-height: 270px;
+    overflow: auto;
+}
+
+/*--------------------------------------------------------------
+# contactenos Section
+--------------------------------------------------------------*/
+
+#contactenos {
+    width: 100%;
+    height: 100vh;
+}
+
+.cont-inf-emp {
+    height: 100vh;
+}
+
+.inf-emp {
+    height: calc(100vh - 15%);
+}
+
+.cont-env-correo {
+    height: 100vh;
+    background-color: #1E1D12;
+}
+
+#form-contactenos {
+    padding-top: 50%;
+    padding-inline: 10%;
+    color: snow;
+}
+
+
+#form-contactenos form {
+    display: flex;
+    flex-direction: column;
+}
+
+#form-contactenos label {
+    padding-bottom: 5%;
+}
+
+#form-contactenos input {
+    margin-bottom: 8%;
+    border-radius: 0px 30px 30px 0px;
+    width: 80%;
+}
+
+#mensaje {
+    height: 100px;
+    border-radius: 0px 30px 30px 0px;
+    width: 80%;
+    margin-bottom: 8%;
+}
+
+.btn-enviar {
+    margin-bottom: 8% !important;
+    border-radius: 30px !important;
+    background-color: #1E1D12;
+    color: #fcd306;
+    border-color: #fcd306;
+    width: 25% !important;
+}
+
+.btn-enviar:hover {
+    margin-bottom: 8% !important;
+    border-radius: 30px !important;
+    background-color: #fcd306;
+    color: snow;
+    border-color: #fcd306;
+    width: 25% !important;
+}
+
+#titulo-contac {
+    width: 80%;
+    margin-inline: 15%;
+    padding-top: 10%;
+    padding-bottom: 3%;
+    display: flex;
+    align-items: center;
+}
+
+#titulo-contac h1 {
+    width: 35%;
+    font-weight: bold;
+}
+
+#linea-hor {
+    width: 40%;
+    height: 5px;
+    background-color: #fcd306;
+    border-radius: 5px;
+}
+
+#escribenos {
+    height: 40px;
+    width: 40%;
+    margin-inline: 15%;
+    display: flex;
+    align-items: center;
+}
+
+#escribenos img {
+    width: 25%;
+}
+
+#escribenos p {
+    font-size: 45px;
+    width: 30%;
+    color: #43E4A4;
+}
+
+
+/*--------------------------------------------------------------
+# footer Section
+--------------------------------------------------------------*/
+
+footer {
+    position: relative;
+    left: 0px;
+    bottom: 0px;
+    display: flex;
+    border-top: 3px solid #061525;
+    padding-top: 2%;
+    margin: 5px 25px;
+}
+
+.cont-footer {
+    height: 15%;
+    margin-bottom: 25px;
+}
+
+.foot {
+    margin-left: 3%;
+}
+
+footer .row {
+    align-items: center;
+    width: 100%;
+}
+
+.item-foot {
+    padding: auto;
+}
+
+.item-foot i {
+    font-size: 35px;
+}
+
+/*--------------------------------------------------------------
+# ENTRAR/REGISTRAR modal
+--------------------------------------------------------------*/
+
+.modal {
+    height: 0px;
+    transition: all 0.4s ease;
+}
+
+
+.modal-content {
+    color: snow;
+    border-radius: 20px;
+    border: solid 3px #fecd01;
+    background-color: #1a1a17;
+    opacity: 1;
+    backdrop-filter: blur(21px);
+    box-shadow: -1px 1px 5px 2px black;
+    -webkit-backdrop-filter: blur(21px);
+}
+
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-content h2 {
+    font-weight: bold;
+    margin-bottom: 50px
+}
+
+.modal-dialog {
+    margin-top: 15%;
+    max-width: 900px;
+    margin: 5.75rem auto;
+}
+
+.proveedor {
+    margin-top: 15%;
+    max-width: 390px;
+    margin: 5.75rem auto;
+}
+
+.proveedor .form-control {
+    width: 80%;
+}
+
+.proveedor .mb-3 {
+    padding-left: 20px;
+}
+
+.contenedor-form {
+    padding-bottom: 20px;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 50px;
+    border-right: 4px solid #fff;
+}
+
+.contenedor-formRegistro {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 50px;
+}
+
+.form-control {
+    height: 22px;
+    border-radius: 0px 15px 15px 0px;
+}
+
+.modal-body .btn {
+    color: #fecd01;
+    border-radius: 20px;
+    border: solid 2px #fecd01;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin: 15px 0px;
+    justify-content: space-evenly;
+}
+
+.modal-body .btn:hover {
+    color: snow;
+    background-color: #fecd01;
+    border: solid 2px #fecd01;
+}
+
+.reg-siguiente {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.invalid-feedback {
+    color: #fecd01;
+}
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+    border-color: #fecd01;
+}
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid:hover {
+    border-color: #fecd01;
+    box-shadow: 0 0 0 0.25rem #fecd01;
+}
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid:focus {
+    border-color: #fecd01;
+    box-shadow: 0 0 0 0.25rem #fecd01;
+}
+
+/* Css para js */
+
+.contenedor-modal .show {
+    height: 100vh;
+}
+
+
+
+/*--------------------------------------------------------------
+# Mapa del sitio 
+--------------------------------------------------------------*/
+.cont-mapa-sitio{
+    padding-top: 100px;
+}
+
+.cont-mapa-sitio h1{
+    margin-left: 10%;
+    font-weight: bold;
+}
+.mapa-sitio{
+    border-radius: 20px;
+    border: 3px solid #fedc00;
+    box-shadow: 0px 0px 20px 5px black;
+    width: 50%;
+    margin-top: 20px;
+    background: #1a1a17;
+    margin-left: 10%;
+    color: snow;
+    font-size: 22px;
+}
+
+.mapa-sitio a{
+    color: snow;
+}
+
+
+/*--------------------------------------------------------------
+# Menu Sidebar
+--------------------------------------------------------------*/
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 0px;
+    background: #1a1a17;
+    transition: all 0.4s ease;
+}
+
+.logo {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo i {
+    font-size: 40px;
+    color: snow;
+    height: 60px;
+    min-width: 80px;
+    text-align: center;
+    line-height: 60px;
+}
+
+.logo__nombre {
+    font-size: 25px;
+    color: snow;
+}
+
+.contenedor-menu {
+    height: calc(100% - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nav-links {
+    padding-top: 15px;
+    padding-left: 0px;
+}
+
+.nav-links li {
+    position: relative;
+    list-style: none;
+    transition: all 0.3s ease;
+}
+
+.nav-links li:hover {
+    background: #9C9559;
+}
+
+
+.nav-links li a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+}
+
+.link-icon {
+    color: snow;
+    height: 60px;
+    min-width: 80px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 30px;
+}
+
+
+
+.icon-submenu .link-icon {
+    color: snow;
+    height: 40px;
+    min-width: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+}
+
+.link-nombre {
+    font-size: 15px;
+    font-weight: 300;
+    color: snow;
+}
+
+.link-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.submenu {
+    display: block;
+    padding: 10px 80px 13px 20px;
+    background: #9C9559;
+}
+
+
+
+.submenu a {
+    color: snow;
+    padding: 7px;
+    white-space: nowrap;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    font-size: 22px;
+}
+
+.submenu a:hover {
+    opacity: 1 !important;
+}
+
+.sidebar .submenu {
+    position: absolute;
+    right: 100%;
+    top: 0%;
+    margin-top: 0%;
+    padding: 10px 20px;
+    border-radius: 8px 0px 0px 8px;
+}
+
+.sidebar li .submenu {
+    top: -15px;
+    transition: all 0.4s ease;
+    opacity: 0;
+}
+
+.sidebar.close li .submenu {
+    position: absolute;
+    opacity: 1;
+}
+
+
+.submenu .link-nombre {
+    display: block;
+}
+
+
+.nav-menu2 {
+    padding-bottom: 10px;
+}
+
+.sidebarUsuarios__titulo {
+    font-size: 25px;
+    color: snow;
+    text-align: center;
+}
+
+.nav-links li.verMenu .submenu {
+    display: block;
+    opacity: 1 !important;
+    top: -1px;
+}
+
+.nav-links li.verMenu .submenu a:hover {
+    opacity: 1 !important;
+}
+
+.nav-links li i {
+    transition: all 0.4s ease;
+    ;
+}
+
+.nav-links li.verMenu i.flecha {
+    transform: rotate(90deg);
+}
+
+/*-clases para .js-*/
+
+.body_move {
+    margin-right: 280px;
+}
+
+.sidebar_move {
+    width: 280px;
+}
+
+.header_move {
+    margin-right: 280px;
+}
+
+/*--------------------------------------------------------------
+# Perfil administrador
+--------------------------------------------------------------*/
+.container-perfil {
+    margin-top: 25px;
+    color: snow;
+    width: 400px;
+    background-color: #1a1a17;
+    border-radius: 20px;
+    border: 3px solid #fecd01;
+    box-shadow: -1px 1px 5px 2px black;
+    text-align: center;
+}
+
+.contenido-perfil {
+    margin: 10px 10px;
+}
+
+.contenido-perfil img {
+    border-radius: 50%;
+    width: 225;
+    height: 225;
+}
+
+.opc-perfil {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.editperfil {
+    max-width: 600px;
+}
+
+.cambiar-clase {
+    border-radius: 20px;
+    border: 2px solid #fecd01;
+    padding: 10px;
+}
+
+.mychart{
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.mychart:hover{
+    box-shadow: 0px 0px 17px 2px black;
+}
+
+
+/*--------------------------------------------------------------
+# Gestion usuarios
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# Gestion inventario
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Ventas
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# estilos compartidos gestiones
+--------------------------------------------------------------*/
+
+.titulo-Gestion {
+    margin-top: 5%;
+}
+
+.titulo-Gestion h1 {
+    font-weight: bold;
+}
+
+.form-Gestion input {
+    background-color: transparent;
+    width: 100%;
+    padding: 0px 4px;
+    border: none;
+    border-bottom: 2px solid #000000;
+}
+
+.dataTables_filter input{
+    background-color: transparent !important;
+    width: 100% !important;
+    padding: 0px 4px !important;
+    border: none !important;
+    border-bottom: 2px solid #000000 !important;
+}
+
+.form-Gestion select {
+    background-color: transparent;
+    width: 100%;
+    padding: 2px 4px;
+    border: none;
+    border-bottom: 2px solid #000000;
+}
+
+.btn-form {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn-form button {
+    height: 40px;
+    padding: 0px 12px;
+    border-radius: 22px;
+    border: 2px solid #000000;
+    background-color: transparent;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.dt-buttons button{
+    height: 40px !important;
+    padding: 0px 12px !important;
+    border-radius: 22px !important;
+    border: 2px solid #000000 !important;
+    background-color: transparent !important;
+    font-size: 14px !important;    
+    align-items: center !important;
+}
+
+/*--------------------------------------------------------------
+# estilos tablas
+--------------------------------------------------------------*/
+
+.contenedor-tabla {
+    margin-top: 25px;
+}
+
+.opc-tabla {
+    display: block;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.table th {
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+}
+
+.table thead {
+    border-bottom: 2px solid #fed10f !important;
+}
+
+
+.iconos {
+    padding: 3px;
+    cursor: pointer;
+}
+
+/*--------------------------------------------------------------
+# estilos formulario de gestiones
+--------------------------------------------------------------*/
+.form-lateral {
+    position: fixed;
+    top: 15%;
+    right: 0;
+    height: 100%;
+    width: 0px;
+    transition: all 0.4s ease;
+}
+
+.form-gestion {
+    color: snow;
+    width: 500px;
+    background-color: #1a1a17;
+    border-radius: 20px 0px 0px 20px;
+    border: 3px solid #fecd01;
+    box-shadow: -1px 1px 5px 2px black;
+}
+
+.form-gestion h1 {
+    display: flex;
+    align-items: center;
+}
+
+.form-gestion h1 i {
+    margin-right: 8px;
+}
+
+.form-gestion select {
+    background-color: transparent;
+    color: snow;
+    width: 100%;
+    padding: 2px 4px;
+    border: none;
+    border-bottom: 2px solid snow;
+}
+
+.contenedor-formulario {
+    padding: 15px 30px 20px 40px;
+}
+
+.cerrar-form {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 35px;
+}
+
+.campo-form {
+    padding-bottom: 15px;
+}
+
+.campo-form input {
+    border-style: none;
+    border-radius: 0px 22px 22px 0px;
+    height: 22px;
+}
+
+.campo-form option {
+    padding-bottom: 15px;
+    background-color: #9a9a94;
+}
+
+.btn-formulario {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-formulario input {
+    height: 30px;
+    width: 80px;
+    text-align: center;
+    color: snow;
+    padding: 0px 12px;
+    border-radius: 22px;
+    border: 2px solid snow;
+    background-color: transparent;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/*-clases para .js-*/
+
+.formulario_move {
+    width: 496px;
+}
+
+.abrirCerrarForm {
+    cursor: pointer;
+}
+
+
+/*--------------------------------------------------------------
+# bienvenida usuario
+--------------------------------------------------------------*/
+
+#header-usuario {
+    transition: all 0.4s ease;
+    width: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgb(17, 17, 17);
+    z-index: 100;
+    position: fixed;
+}
+
+.carousel-inner {
+    height: calc(100vh - 300px) !important;
+    box-shadow: 0px 0px 14px 5px black;
+}
+
+
+/* ERORR 404 */
+
+.error {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.contenedor-error {
+    width: 50%;
+    height: calc(100vh - 50%);
+    background-color: #9a9a9487;
+    margin: auto;
+    border: 4px solid black;
+    box-shadow: 0px 0px 10px 7px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.titulo-error img {
+    display: block;
+    width: 90%;
+    margin: auto;
+}
+
+.descripcion-error {
+    text-align: center;
+}
+
+.logo-emp {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 25px;
+}
+
+.logo-emp img {
+    width: 40%;
+}
+
+.btn-error-volver {
+    color: black;
+    background-color: transparent;
+    border: 3px solid black;
+    border-radius: 40px;
+    /* display: block; */
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px;
+}
+
+.btn-error-volver:hover {
+    color: snow;
+    background-color: #fcd306;
+    border: 3px solid #fcd306;   
+}
+
+/*--------------------------------------------------------------
+# productos
+--------------------------------------------------------------*/
+.navbar-nav {
+    align-items: center;
+}
+
+.ti-producto {
+    width: 80%;
+    margin-inline: 15%;
+    margin-top: 7%;
+    margin-bottom: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;    
+}
+
+.ti-producto h1{
+    font-weight: bold;
+}
+
+.buscaProducto {
+    height: 28px;
+    padding-left: 20px;
+}
+
+.buscaProducto button{
+    color: black;
+    background-color: transparent;
+    border-color: black;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px 20px;
+    border-radius: 20px;
+}
+
+.buscaProducto button:hover{
+    color: snow;
+    background-color: #1a1a17;
+    border-color: #1a1a17;
+}
+
+.buscarCategoria {
+    height: 28px;
+}
+
+.contenedor-item-product {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 50px;
+}
+
+.buscaProducto input,
+select {
+    padding-left: 20px;
+    border-radius: 20px;
+}
+
+.contenedor-detalle-producto {
+
+    padding-top: 100px;
+}
+
+.contenedor-img-producto {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.contenedor-img-producto img {
+
+    width: 60%;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 3px black;
+}
+
+.fichaProducto {
+    background-color: #1e1d12d6;
+    border: 2px solid #fcd306;
+    box-shadow: 0px 0px 15px 5px black;
+    border-radius: 20px;
+    color: snow;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btn-addCarrito {
+    color: #fcd306;
+    background-color: transparent;
+    border-color: #fcd306;
+    border-radius: 40px;
+    display: block;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.btn-addCarrito:hover {
+    color: snow;
+    background-color: #fcd306;
+    border-color: #fcd306;
+}
+
+.descripcion-producto {
+    padding: 15px;
+    color: snow;
+    background-color: #1e1d12d6;
+    border: 3px solid #fcd306;
+    border-radius: 20px;
+    margin: 35px 0px;
+    box-shadow: 0px 0px 15px 5px black;
+}
+
+/*--------------------------------------------------------------
+# Servicios
+--------------------------------------------------------------*/
+
+.seccion-servicio {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+hr {
+    height: 2px !important;
+}
+
+#header-servicios {
+    transition: all 0.4s ease;
+    width: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgb(17, 17, 17);
+    z-index: 100;
+    position: fixed;
+}
+
+.contenedor-servicios {
+    height: calc(100vh - 30%);
+    width: 70%;
+    background-color: #1e1d12d6;
+    border: 2px solid black;
+    box-shadow: 0px 0px 15px 7px black;
+    border-radius: 5px;
+}
+
+.contenedor-servicios .row {
+    height: 100%;
+}
+
+.cont-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.cont-img img {
+    width: 75%;
+    height: 70%;
+    box-shadow: 0px 0px 15px 5px black;
+    border-radius: 5px;
+}
+
+.descrip-servicio {
+    color: snow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    overflow: auto;
+}
+
+.contenedor-servicios .desc-servicio {
+    margin: 0px 45px;
+    font-size: 22px;
+    overflow-y: auto;
+    max-height: 70%;
+}
+
+.contenedor-servicios .titulo-servicio {
+    font-size: 26px;
+    font-weight: bold;
+    text-shadow: -3px 5px 5px black;
+}
+
+.contenedor-servicios .btn-servicio {
+    border: 2px solid #fdcd00;
+    color: #fdcd00;
+    padding: 0px 10px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 19px 1px black;
+}
+
+
+.contenedor-servicios .btn-servicio:hover {
+    color: snow;
+    background-color: #fdcd00;
+}
+
+
+/*--------------------------------------------------------------
+# Carrito
+--------------------------------------------------------------*/
+
+.ti-carrito {
+    padding: 120px 10px 40px 10px;
+    font-weight: bold;
+}
+
+.ti-carrito h1 {
+    font-weight: bold;
+    text-shadow: -6px 4px 8px black;
+}
+
+.producto-carrito {
+    color: snow;
+    height: 120px;
+    margin: 20px 20px;
+    border: 2px solid #fdcd00;
+    border-radius: 10px;
+    background-color: #1e1d12d6;
+    box-shadow: 0px 0px 8px 3px black;
+    transition: 0.5s all ease;
+}
+
+.seguir-comprando{
+    opacity: 0.5;
+    box-shadow: none;       
+}
+
+.seguir-comprando a{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.seguir-comprando h1{     
+    color: snow;
+    text-align: center;
+}
+
+.seguir-comprando:hover{
+    opacity: 1;
+    box-shadow: 0px 0px 8px 3px black;    
+    text-align: center;
+}
+
+.producto-carrito img {
+    max-height: 100px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px 3px black;
+}
+
+.producto-carrito .cont-prod {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.cont-pedido {
+    color: snow;
+    margin: 10px 20px;
+    border: 2px solid #fdcd00;
+    border-radius: 10px;
+    background-color: #1e1d12d6;
+    box-shadow: 0px 0px 8px 3px black;
+    text-align: center;
+    padding: 12px;
+    line-height: 3;
+}
+
+.cont-pedido input {
+    margin: auto;
+    color: #fdcd00;
+    width: 70%;
+    background-color: transparent;
+    border: 1px solid #fdcd00;
+    border-radius: 20px;
+}
+
+.cont-pedido input:hover {
+    color: snow;
+    background-color: #fdcd00;
+}
+
+
+.compra{    
+    margin-top: 25px;
+    color: snow;
+    height: 150px;
+    background-color: #1a1a17;
+    border-radius: 20px;
+    border: 3px solid #fecd01;
+    box-shadow: -1px 1px 5px 2px black;
+    padding: 15px 10px;
+}
+
+/*--------------------------------------------------------------
+# Alertas
+--------------------------------------------------------------*/
+
+.datos-guardados{    
+    opacity: 0;
+    border: 3px solid #5dcc78;
+    width: 300px;
+    color: #5dcc78;
+    border-radius: 30px;
+    box-shadow: -1px 1px 5px 2px black;
+    margin: 15px 5px;
+}
+
+
+.datos-guardados i, .error-guardar i{
+    font-size: 45px;
+}
+
+.error-guardar{
+    opacity: 0;
+    border: 3px solid #e56f5b;
+    width: 300px;
+    color: #e56f5b;
+    border-radius: 30px;
+    box-shadow: -1px 1px 5px 2px black;
+    margin: 15px 5px;
+}
+
+.error-guardar p{
+    margin-bottom: 0px;
+}
+
+.cont-alert{
+    display: flex;
+    align-items: center;
+}
+
+/*--------------------------------------------------------------
+# Pedido
+--------------------------------------------------------------*/
+
+.titulo-p{
+    padding-top: 100px;
+}
+
+
+.opcionPago {
+    color: snow;
+    height: 100px;
+    margin: 60px 20px;
+    border: 2px solid #fdcd00;
+    border-radius: 10px;
+    background-color: #1e1d12d6;
+    box-shadow: 0px 0px 8px 3px black;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.cont-pago{
+    background: #fdcd0030; 
+    border-radius: 20px;
+}
+
+.tipo-pago{
+    margin: 40px 0px;
+    padding: 0px 20px;
+    color: #fdcd00;
+    background: #1e1d12d6;
+    border: 3px solid #fdcd00;
+    border-radius: 20px;
+}
+
+.tipo-pago:hover{
+    color: snow;
+    background: #fdcd00;
+}
+
+.detalles{
+    background: #fdcd0030; 
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.item-detalle{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 10px;
+    box-shadow: 0px 0px 4px 1px black;
+}
+
+.item-detalle i{
+    font-size: 30px;
+}
+
+/*--------------------------------------------------------------
+# Reportes
+--------------------------------------------------------------*/
+.contenedor-reportes{
+    margin-top: 40px;
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 20px;   
+    box-shadow: 0px 0px 2px 1px black;    
+    transition: 0,5s all ease;
+}
+
+.contenedor-reportes:hover{     
+    box-shadow: 0px 0px 9px 3px black;    
+}
+
+.contenedor-reportes hr{
+    margin: 3rem 0;
+}
+.contenedor-reportes canvas{
+    margin: 3rem 0;
+}
