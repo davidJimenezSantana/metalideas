@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -182,7 +183,7 @@ public class ventas implements Serializable {
     }
 
     public void asociarDatos() {
-
+        
         this.estadoVenta = this.estadVentaFacade.find(Integer.valueOf(this.idestadoVenta));
         this.metodoPago = this.metodoPagoFacade.find(Integer.valueOf(this.idmetodoPago));
         this.usuario = this.usuarioFacade.find(Integer.valueOf(this.idusuario));
@@ -190,13 +191,27 @@ public class ventas implements Serializable {
         this.venta.setEstadoIdestado(estadoVenta);
         this.venta.setMetodoPagoIdmetodoPago(metodoPago);
         this.venta.setUsuarioIdusuario(usuario);
+        this.venta.setFecha(this.comprobante.getFecha());      
+        this.venta.setComprobanteDePagoIdcomprobanteDePago(this.comprobante);
 
     }
 
     public void agregar() throws NamingException, Exception {
-        //asociarDatos();
-        //ventaFacade.create(this.venta);
-        //this.venta = new Venta();
+        agregarComprobante();
+        asociarDatos();
+        ventaFacade.create(this.venta);
+        this.venta = new Venta();
+        this.comprobante = new ComprobanteDePago();
+    }
+
+    public void agregarComprobante() throws NamingException, Exception {
+
+        Date fecha = new Date();
+        this.comprobante.setFecha(fecha);
+        this.comprobante.setHora(fecha);
+        this.comprobante.setTotal(this.venta.getTotal());
+        
+        this.comprobanteDePagoFacade.create(comprobante);
     }
 
     public void editar() throws NamingException, Exception {
@@ -207,8 +222,7 @@ public class ventas implements Serializable {
 
     public void borrar(int id) throws NamingException, Exception {
 
-        venta = ventaFacade.find(id);
-
+        venta = ventaFacade.find(id);       
         ventaFacade.remove(venta);
         this.venta = new Venta();
     }

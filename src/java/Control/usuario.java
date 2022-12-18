@@ -155,7 +155,9 @@ public class usuario implements Serializable {
             direccion = "index";
         }
         System.out.println(direccion);
+        this.usuario = new Usuario();
         return direccion;
+
     }
 
     public List<Rol> findAllRoles() {
@@ -166,17 +168,36 @@ public class usuario implements Serializable {
         return this.estadoUsuarioFacade.findAll();
     }
 
-    public void editar() {
-        iniciarUsuario();
-        usuarioFacade.edit(usuario);
+    public void agregar() {
+
+        iniciarUsuarioAgregar();
+        this.usuarioFacade.create(usuario);
+        this.usuario = new Usuario();
     }
 
-    public void borrar() {
-        this.usuarioFacade.remove(this.usuario);
+    public void editar() {
+
+        iniciarUsuario();
+        this.usuarioFacade.edit(usuario);
+        this.usuario = new Usuario();
+    }
+
+    public void borrar(int id)  {
+        Usuario u = this.usuarioFacade.find(id);
+        this.usuarioFacade.remove(u);
     }
 
     public void iniciarUsuario() {
+        Usuario u = this.usuarioFacade.find(this.usuario.getIdusuario());
+        this.rol = this.rolFacade.find(Integer.parseInt(this.rolAux));
+        this.estadoUsuario = this.estadoUsuarioFacade.find(Integer.parseInt(this.estadoUsuarioAux));
 
+        this.usuario.setEstadoUsuarioIdestadoCliente(estadoUsuario);
+        this.usuario.setRolIdrol(rol);
+        this.usuario.setClave(u.getClave());
+    }
+    
+    public void iniciarUsuarioAgregar() {
         this.rol = this.rolFacade.find(Integer.parseInt(this.rolAux));
         this.estadoUsuario = this.estadoUsuarioFacade.find(Integer.parseInt(this.estadoUsuarioAux));
 

@@ -32,6 +32,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script> 
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
         <title>Gestión usuarios</title>
@@ -52,13 +53,12 @@
             });
 
             function cargar(id, nombre, apellido, rol, estado) {
-                document.getElementById("formularioEditar:id").value = id;
-                document.getElementById("formularioEditar:nombre").value = nombre;
-                document.getElementById("formularioEditar:apellido").value = apellido;
-                document.getElementById("formularioEditar:rol").value = rol;
-                document.getElementById("formularioEditar:estado").value = estado;
+                document.getElementById("formularioEditarUser:idUsuario").value = Number(id);
+                document.getElementById("formularioEditarUser:nombre").value = nombre;
+                document.getElementById("formularioEditarUser:apellido").value = apellido;
+                document.getElementById("formularioEditarUser:rol").value = rol;
+                document.getElementById("formularioEditarUser:estado").value = estado;
             }
-
         </script>
 
     </h:head>
@@ -213,7 +213,7 @@
                                 <h:form id="formulario">
                                     <div class="opc-tabla">
                                         <a class='bx bx-cog iconos abrirCerrarFormEdit' id="opc-form" href="javascript:cargar('#{item.idusuario}','#{item.nombre}','#{item.apellido}','#{item.rolIdrol.idrol}','#{item.estadoUsuarioIdestadoCliente.idestadoCliente}')">Editar</a>     
-                                        <h:commandButton  action="#{usuario.borrar()}" value="Eliminar"></h:commandButton>                                        
+                                        <h:commandButton  action="#{usuario.borrar(item.idusuario)}" value="Eliminar"></h:commandButton>                                        
                                     </div>
                                 </h:form>                                
                             </h:column> 
@@ -242,84 +242,43 @@
                         <h1><i class='bx bx-add-to-queue'></i>Agregar producto</h1>
                     </div>
                     <h:form  class="needs-validation" id="formulario">
+                        <div>
+                            <h:inputHidden value="#{usuario.usuario.idusuario}"></h:inputHidden>
+                        </div>
                         <div class="row">
                             <div class="col-6">
                                 <div class="campo-form">
-                                    <label for="nombreProducto">Nombre producto*</label>
-                                    <h:inputText id="nombre" value="#{inventario.producto.nombre}" required="required"></h:inputText><br></br> 
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
+                                    <label for="nombre">Nombre usuario: </label>
+                                    <h:inputText value="#{usuario.usuario.nombre}" required="required"></h:inputText>
                                 </div>
                                 <div class="campo-form">
-                                    <label for="precioProducto">Precio venta*</label>
-                                    <h:inputText id="precioVenta" value="#{inventario.producto.precioVenta}" required="required"></h:inputText><br></br>  
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
+                                    <h:outputLabel>Rol: </h:outputLabel>                
+                                    <h:selectOneMenu value="#{usuario.rolAux}">
+                                        <f:selectItems value="#{usuario.findAllRoles()}" var="item" 
+                                                       itemValue="#{item.idrol}" itemLabel="#{item.nombre}"/>
+                                    </h:selectOneMenu>
                                 </div>
-                                <div class="campo-form">
-                                    <h:outputLabel for="tipo">Categoria: </h:outputLabel>                
-                                    <h:selectOneMenu id="tipo" value="#{inventario.cataAux}">
-                                        <f:selectItems value="#{inventario.categoriaFacade.findAll()}" var="item" 
-                                                       itemValue="#{item.idcategoria}" itemLabel="#{item.nombre}"/>
-                                    </h:selectOneMenu>     <br></br>
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
-                                </div>                               
                             </div>
                             <div class="col-6">
                                 <div class="campo-form">
-                                    <label for="cantidad">Cantidad*</label>
-                                    <h:inputText id="cantidad" value="#{inventario.producto.cantidad}" required="required"></h:inputText><br></br>                                    
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
+                                    <label for="apellido">Apellido usuario:</label>
+                                    <h:inputText value="#{usuario.usuario.apellido}" required="required"></h:inputText> 
                                 </div>
                                 <div class="campo-form">
-                                    <label for="precioCompra">Precio compra*</label>
-                                    <h:inputText id="precioCompra" value="#{inventario.producto.precioCompra}" required="required"></h:inputText><br></br>                                    
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
-                                </div>
-                                <div class="campo-form">
-                                    <h:outputLabel for="marca">Marca: </h:outputLabel>
-                                    <h:selectOneMenu id="marca" value="#{inventario.marcaAux}">
-                                        <f:selectItems value="#{inventario.marcaFacade.findAll()}" var="item" 
-                                                       itemValue="#{item.idmarca}" itemLabel="#{item.nombre}"/>
+                                    <h:outputLabel for="estado">Estado: </h:outputLabel>
+                                    <h:selectOneMenu id="estado" value="#{usuario.estadoUsuarioAux}">
+                                        <f:selectItems value="#{usuario.findAllEstados()}" var="item" 
+                                                       itemValue="#{item.idestadoCliente}" itemLabel="#{item.nombreEstado}"/>
                                     </h:selectOneMenu>
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
+                                </div>
+                                <div class="campo-form">
+                                    <label for="nombre">Clave: </label>
+                                    <h:inputSecret value="#{usuario.usuario.clave}" required="required"></h:inputSecret>
                                 </div>
                             </div>
-                            <div class="campo-form">
-                                <label for="descripcion"> Descripción</label>
-                                <h:inputText id="descripcion" value="#{inventario.producto.descripcion}"></h:inputText>                               
-                            </div>                            
-                        </div>
+                        </div>        
                         <div class="row btn-formulario">
-                            <h:commandButton value="Agregar" action="#{inventario.agregar()}"></h:commandButton>
+                            <h:commandButton value="Agregar" action="#{usuario.agregar}"></h:commandButton>
                         </div>
                     </h:form>
                 </div>
@@ -341,10 +300,9 @@
                     <div class="row titulo-form">
                         <h1><i class='bx bx-cog'></i>Editar usuario</h1>
                     </div>
-                    <h:form id="formularioEditar" class="needs-validation" >  
+                    <h:form id="formularioEditarUser" class="needs-validation" >  
                         <div>
-                            <label for="nombre">Id usuario</label>
-                            <h:inputText disabled="true" id="id" value="#{usuario.usuario.idusuario}"></h:inputText>
+                            <h:inputHidden id="idUsuario" value="#{usuario.usuario.idusuario}"></h:inputHidden>
                         </div>
                         <div class="row">
                             <div class="col-6">
@@ -366,13 +324,13 @@
                                     <label for="apellido">Apellido usuario:</label>
                                     <h:inputText id="apellido" value="#{usuario.usuario.apellido}" required="required"></h:inputText> 
                                 </div>
-                            </div>
-                            <div class="campo-form">
-                                <h:outputLabel for="estado">Estado: </h:outputLabel>
-                                <h:selectOneMenu id="estado" value="#{usuario.estadoUsuarioAux}">
-                                    <f:selectItems value="#{usuario.findAllEstados()}" var="item" 
-                                                   itemValue="#{item.idestadoCliente}" itemLabel="#{item.nombreEstado}"/>
-                                </h:selectOneMenu>
+                                <div class="campo-form">
+                                    <h:outputLabel for="estado">Estado: </h:outputLabel>
+                                    <h:selectOneMenu id="estado" value="#{usuario.estadoUsuarioAux}">
+                                        <f:selectItems value="#{usuario.findAllEstados()}" var="item" 
+                                                       itemValue="#{item.idestadoCliente}" itemLabel="#{item.nombreEstado}"/>
+                                    </h:selectOneMenu>
+                                </div>
                             </div>
                         </div>        
                         <div class="row btn-formulario">
@@ -396,30 +354,3 @@
 </html>
 
 
-<!--
-<h:body>
-    <h:dataTable class="table" id="tabla_inventario" value="#{usuario.usuarioFacade.findAll()}" var="item">
-        <h:column>
-            <f:facet name="header"> Id usuario </f:facet>
-            <h:outputText value="#{item.idusuario}"></h:outputText>                
-        </h:column>
-        <h:column>
-            <f:facet name="header"> Nombre </f:facet>
-            <h:outputText value="#{item.nombre}"></h:outputText>                
-        </h:column>
-        <h:column>
-            <f:facet name="header"> Apellido </f:facet>
-            <h:outputText value="#{item.apellido}"></h:outputText>                
-        </h:column>
-        <h:column>
-            <f:facet name="header"> Rol </f:facet>
-            <h:outputText value="#{item.rolIdrol.nombre}"></h:outputText>                
-        </h:column>
-        <h:column>
-            <f:facet name="header"> Estado </f:facet>
-            <h:outputText value="#{item.estadoUsuarioIdestadoCliente.nombreEstado}"></h:outputText>                
-        </h:column>
-    </h:dataTable>
-</h:body>
-
--->
