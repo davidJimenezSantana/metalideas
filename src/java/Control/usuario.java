@@ -8,6 +8,7 @@ package Control;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 import persistencia.entidades.Correo;
@@ -42,13 +43,11 @@ public class usuario implements Serializable {
 
     HttpSession sesion = null;
 
-
     private Correo correo = new Correo();
     private EstadoUsuario estadoUsuario = new EstadoUsuario();
     private Rol rol = new Rol();
     private Usuario usuario = new Usuario();
-    
-    
+
     private String estadoUsuarioAux;
     private String rolAux;
 
@@ -150,23 +149,38 @@ public class usuario implements Serializable {
 
         if (usuario != null) {
 
-          direccion = "Bienvenida";
+            direccion = "Bienvenida";
 
         } else {
-           direccion = "index";
+            direccion = "index";
         }
         System.out.println(direccion);
         return direccion;
     }
 
-    public void crearUsuario() {
-
-        rol = rolFacade.find(Integer.parseInt(rolAux));
-        estadoUsuario = estadoUsuarioFacade.find(Integer.parseInt(estadoUsuarioAux));
-        this.usuario.setRolIdrol(rol);
-        this.usuario.setEstadoUsuarioIdestadoCliente(estadoUsuario);
-
-        usuarioFacade.create(this.usuario);
+    public List<Rol> findAllRoles() {
+        return this.rolFacade.findAll();
     }
 
+    public List<EstadoUsuario> findAllEstados() {
+        return this.estadoUsuarioFacade.findAll();
+    }
+
+    public void editar() {
+        iniciarUsuario();
+        usuarioFacade.edit(usuario);
+    }
+
+    public void borrar() {
+        this.usuarioFacade.remove(this.usuario);
+    }
+
+    public void iniciarUsuario() {
+
+        this.rol = this.rolFacade.find(Integer.parseInt(this.rolAux));
+        this.estadoUsuario = this.estadoUsuarioFacade.find(Integer.parseInt(this.estadoUsuarioAux));
+
+        this.usuario.setEstadoUsuarioIdestadoCliente(estadoUsuario);
+        this.usuario.setRolIdrol(rol);
+    }
 }
