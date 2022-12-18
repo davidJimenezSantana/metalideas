@@ -11,9 +11,9 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.naming.NamingException;
-import persistencia.Categoria;
-import persistencia.Marca;
-import persistencia.Producto;
+import persistencia.entidades.Categoria;
+import persistencia.entidades.Marca;
+import persistencia.entidades.Producto;
 import persistencia.model.CategoriaFacadeLocal;
 import persistencia.model.MarcaFacadeLocal;
 import persistencia.model.ProductoFacadeLocal;
@@ -115,19 +115,22 @@ public class inventario implements Serializable {
         
         iniciarProducto();        
         productoFacade.create(this.producto);
+        this.producto = new Producto();
     }
 
     public void editar() throws NamingException, Exception {
         
        iniciarProducto();
        productoFacade.edit(producto);
+       this.producto = new Producto();
     }
 
     public void borrar(int id) throws NamingException, Exception {
         
         producto = productoFacade.find(id);
         
-        productoFacade.remove(producto);
+        productoFacade.remove(producto);        
+        this.producto = new Producto();
     }
     
     private void iniciarProducto(){

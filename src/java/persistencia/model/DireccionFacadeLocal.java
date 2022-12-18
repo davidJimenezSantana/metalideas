@@ -7,7 +7,7 @@ package persistencia.model;
 
 import java.util.List;
 import javax.ejb.Local;
-import persistencia.Direccion;
+import persistencia.entidades.Direccion;
 
 /**
  *

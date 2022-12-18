@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia;
+package persistencia.entidades;
 
 import java.io.Serializable;
 import java.util.List;
@@ -27,43 +27,43 @@ import javax.validation.constraints.Size;
  * @author david
  */
 @Entity
-@Table(name = "categoria")
+@Table(name = "marca")
 @NamedQueries({
-    @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c")})
-public class Categoria implements Serializable {
+    @NamedQuery(name = "Marca.findAll", query = "SELECT m FROM Marca m")})
+public class Marca implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idcategoria")
-    private Integer idcategoria;
+    @Column(name = "idmarca")
+    private Integer idmarca;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoIdtipo", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "marcaIdmarca", fetch = FetchType.LAZY)
     private List<Producto> productoList;
 
-    public Categoria() {
+    public Marca() {
     }
 
-    public Categoria(Integer idcategoria) {
-        this.idcategoria = idcategoria;
+    public Marca(Integer idmarca) {
+        this.idmarca = idmarca;
     }
 
-    public Categoria(Integer idcategoria, String nombre) {
-        this.idcategoria = idcategoria;
+    public Marca(Integer idmarca, String nombre) {
+        this.idmarca = idmarca;
         this.nombre = nombre;
     }
 
-    public Integer getIdcategoria() {
-        return idcategoria;
+    public Integer getIdmarca() {
+        return idmarca;
     }
 
-    public void setIdcategoria(Integer idcategoria) {
-        this.idcategoria = idcategoria;
+    public void setIdmarca(Integer idmarca) {
+        this.idmarca = idmarca;
     }
 
     public String getNombre() {
@@ -85,18 +85,18 @@ public class Categoria implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idcategoria != null ? idcategoria.hashCode() : 0);
+        hash += (idmarca != null ? idmarca.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Categoria)) {
+        if (!(object instanceof Marca)) {
             return false;
         }
-        Categoria other = (Categoria) object;
-        if ((this.idcategoria == null && other.idcategoria != null) || (this.idcategoria != null && !this.idcategoria.equals(other.idcategoria))) {
+        Marca other = (Marca) object;
+        if ((this.idmarca == null && other.idmarca != null) || (this.idmarca != null && !this.idmarca.equals(other.idmarca))) {
             return false;
         }
         return true;
@@ -104,7 +104,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencia.Categoria[ idcategoria=" + idcategoria + " ]";
+        return "persistencia.Marca[ idmarca=" + idmarca + " ]";
     }
     
 }

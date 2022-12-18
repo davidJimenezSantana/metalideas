@@ -5,8 +5,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import persistencia.Correo;
-import persistencia.Usuario;
+import persistencia.entidades.Correo;
+import persistencia.entidades.Usuario;
 
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {

@@ -35,26 +35,34 @@
         <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script> 
 
 
-        <title>Inventario</title>
+        <title>Ventas</title>
 
         <script>
             $(document).ready(function () {
 
-                $('#tabla_inventario').DataTable({
+                $('#tabla_ventas').DataTable({
                     dom: 'Bfrtip',
+                    paging: false,
+                    scrollY: 400,
+                    language: {url: '//cdn.datatables.net/plug-ins/1.13.1/i18n/es-MX.json'},
+
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ]
                 });
-
             });
 
-            function cargar(id, nombre, venta, compra, cantidad) {
-                document.getElementById("formularioEditar:idProducto").value = id;
+            function cargar(id, total, destino, idestado, fecha, nombre, apellido, metodoPago, comprobante, idusuario) {
+                document.getElementById("formularioEditar:idVenta").value = id;
+                document.getElementById("formularioEditar:total").value = total;
+                document.getElementById("formularioEditar:destino").value = destino;
+                document.getElementById("formularioEditar:idestado").value = idestado;
+                document.getElementById("formularioEditar:fecha").value = fecha;
                 document.getElementById("formularioEditar:nombre").value = nombre;
-                document.getElementById("formularioEditar:precioVenta").value = venta;
-                document.getElementById("formularioEditar:precioCompra").value = compra;
-                document.getElementById("formularioEditar:cantidad").value = cantidad;
+                document.getElementById("formularioEditar:apellido").value = apellido;
+                document.getElementById("formularioEditar:metodoPago").value = metodoPago;
+                document.getElementById("formularioEditar:comprobante").value = comprobante;
+                document.getElementById("formularioEditar:idusuario").value = idusuario;
             }
 
         </script>
@@ -63,7 +71,7 @@
 
 
 
-    <h:body id="body">
+    
 
 
         <header id="header-administrador">
@@ -184,7 +192,7 @@
             <div class="row ">
                 <div class="col-8">
                     <div class="contenedor-tabla">
-                        <h:dataTable class="table" id="tabla_inventario" value="#{ventas.ventaFacade.findAll()}" var="item">
+                        <h:dataTable class="table" id="tabla_ventas" value="#{ventas.findAllVentas()}" var="item">
 
                             <h:column>
                                 <f:facet name="header"> Estado </f:facet>
@@ -210,20 +218,14 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header"> inf. </f:facet>
-                                <h:outputText value="#{item.tipoIdtipo.nombre}"></h:outputText>
+                                <h:outputText value=""></h:outputText>
                             </h:column>
-                            <!--  
-                            <h:column>
-                                <f:facet name="header"> Descripcion </f:facet>
-                                <h:outputText value="#{item.descripcion}"></h:outputText>
-                            </h:column>
-                            -->
                             <h:column>
                                 <f:facet name="header"> Acción </f:facet>
                                 <h:form id="formulario">
                                     <div class="opc-tabla">
-                                        <a class='bx bx-cog iconos abrirCerrarFormEdit' id="opc-form" href="javascript:cargar('#{item.idproducto}','#{item.nombre}','#{item.precioVenta}','#{item.precioCompra}','#{item.cantidad}')">Editar</a>     
-                                        <h:commandButton  action="#{inventario.borrar(item.idproducto)}" value="Eliminar"></h:commandButton>                                        
+                                        <a class='bx bx-cog iconos abrirCerrarFormEdit' id="opc-form" href="javascript:cargar('#{item.idventa}','#{item.total}','#{item.destino}','#{item.estadoIdestado.idestado}','#{item.fecha}','#{item.usuarioIdusuario.nombre}','#{item.usuarioIdusuario.apellido}','#{item.metodoPagoIdmetodoPago.idmetodoPago}','#{item.comprobanteDePagoIdcomprobanteDePago.idcomprobanteDePago}','#{item.usuarioIdusuario.idusuario}')">Editar</a>     
+                                        <h:commandButton  action="#{ventas.borrar(item.idventa)}" value="Eliminar"></h:commandButton>                                        
                                     </div>
                                 </h:form>                                
                             </h:column> 
@@ -251,83 +253,45 @@
                     <div class="row titulo-form">
                         <h1><i class='bx bx-add-to-queue'></i>Agregar producto</h1>
                     </div>
-                    <h:form  class="needs-validation" id="formulario">
-                        <div class="row">
+                    <h:form  class="needs-validation" id="formAgregar">
+                        <div class='row'>
                             <div class="col-6">
                                 <div class="campo-form">
-                                    <label for="nombreProducto">Nombre producto*</label>
-                                    <h:inputText id="nombre" value="#{inventario.producto.nombre}" required="required"></h:inputText><br></br> 
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
+                                    <label for="total">Total de la venta: $</label>
+                                    <h:inputText  value="#{ventas.venta.total}"></h:inputText>
                                 </div>
                                 <div class="campo-form">
-                                    <label for="precioProducto">Precio venta*</label>
-                                    <h:inputText id="precioVenta" value="#{inventario.producto.precioVenta}" required="required"></h:inputText><br></br>  
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
-                                </div>
-                                <div class="campo-form">
-                                    <h:outputLabel for="tipo">Categoria: </h:outputLabel>                
-                                    <h:selectOneMenu id="tipo" value="#{inventario.cataAux}">
-                                        <f:selectItems value="#{inventario.categoriaFacade.findAll()}" var="item" 
-                                                       itemValue="#{item.idcategoria}" itemLabel="#{item.nombre}"/>
-                                    </h:selectOneMenu>     <br></br>
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
-                                </div>                               
-                            </div>
-                            <div class="col-6">
-                                <div class="campo-form">
-                                    <label for="cantidad">Cantidad*</label>
-                                    <h:inputText id="cantidad" value="#{inventario.producto.cantidad}" required="required"></h:inputText><br></br>                                    
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
-                                </div>
-                                <div class="campo-form">
-                                    <label for="precioCompra">Precio compra*</label>
-                                    <h:inputText id="precioCompra" value="#{inventario.producto.precioCompra}" required="required"></h:inputText><br></br>                                    
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
-                                </div>
-                                <div class="campo-form">
-                                    <h:outputLabel for="marca">Marca: </h:outputLabel>
-                                    <h:selectOneMenu id="marca" value="#{inventario.marcaAux}">
-                                        <f:selectItems value="#{inventario.marcaFacade.findAll()}" var="item" 
-                                                       itemValue="#{item.idmarca}" itemLabel="#{item.nombre}"/>
+                                    <h:outputLabel  for="metodoPago">Metodo de pago:</h:outputLabel>                
+                                    <h:selectOneMenu value="#{ventas.idmetodoPago}">
+                                        <f:selectItems value="#{ventas.findAllMetodosPago()}" var="item" 
+                                                       itemValue="#{item.idmetodoPago}" itemLabel="#{item.nombre}"/>
                                     </h:selectOneMenu>
-                                    <div class="valid-feedback">
-                                        ¡Bien! Datos correctos.
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        ¡Error! Verifica los datos.
-                                    </div>
                                 </div>
                             </div>
-                            <div class="campo-form">
-                                <label for="descripcion">Descripción</label>
-                                <h:inputText id="descripcion" value="#{inventario.producto.descripcion}"></h:inputText>                               
-                            </div>                            
+                            <div class="col-6">
+                                <div class="campo-form">
+                                    <label for="destino">Destino:</label>
+                                    <h:inputText  value="#{ventas.venta.destino}" ></h:inputText> 
+                                </div>  
+                                <div class="campo-form">
+                                    <h:outputLabel   for="idestado">Estado:</h:outputLabel>                
+                                    <h:selectOneMenu  value="#{ventas.idestadoVenta}">
+                                        <f:selectItems value="#{ventas.findAllEstados()}" var="item" 
+                                                       itemValue="#{item.idestado}" itemLabel="#{item.nombre}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class='row campo-form'>
+                            <label for="fecha">Comprador</label>    
+                            <h:outputLabel   for="idestado">Comprador: </h:outputLabel>                
+                            <h:selectOneMenu  value="#{ventas.idusuario}">
+                                <f:selectItems value="#{ventas.findAllUsuario()}" var="item" 
+                                               itemValue="#{item.idusuario}" itemLabel="#{item.nombre} #{item.apellido}"/>
+                            </h:selectOneMenu>
+                        </div>
+
                         <div class="row btn-formulario">
                             <h:commandButton value="Agregar" action="#{inventario.agregar()}"></h:commandButton>
                         </div>
@@ -349,53 +313,54 @@
                         </div>
                     </div>
                     <div class="row titulo-form">
-                        <h1><i class='bx bx-cog'></i>Editar producto</h1>
+                        <h1><i class='bx bx-cog'></i>Editar Venta</h1>
                     </div>
                     <h:form id="formularioEditar" class="needs-validation" >
-                        <h:inputHidden id="idProducto" value="#{inventario.producto.idproducto}"></h:inputHidden>
+                        <h:inputHidden id="idVenta" value="#{ventas.venta.idventa}"></h:inputHidden>
+                        <h:inputHidden id="metodoPago" value="#{ventas.idmetodoPago}"></h:inputHidden>
+                        <h:inputHidden id="comprobante" value="#{ventas.idcomprobante}"></h:inputHidden>
+                        <h:inputHidden id="idusuario" value="#{ventas.idusuario}"></h:inputHidden>
                         <div class="row">
                             <div class="col-6">
                                 <div class="campo-form">
-                                    <label for="nombre">Nombre producto</label>
-                                    <h:inputText id="nombre" value="#{inventario.producto.nombre}" required="required"></h:inputText>
+                                    <label for="total">Total de la venta: $</label>
+                                    <h:inputText style='color:snow;' disabled="true" id="total" value="#{ventas.venta.total}"></h:inputText>
                                 </div>
                                 <div class="campo-form">
-                                    <label for="precioVenta">Precio venta</label>
-                                    <h:inputText id="precioVenta" value="#{inventario.producto.precioVenta}" required="required"></h:inputText> 
-                                </div>
-                                <div class="campo-form">
-                                    <h:outputLabel for="tipo">Categoria: </h:outputLabel>                
-                                    <h:selectOneMenu id="tipo" value="#{inventario.cataAux}">
-                                        <f:selectItems value="#{inventario.categoriaFacade.findAll()}" var="item" 
-                                                       itemValue="#{item.idcategoria}" itemLabel="#{item.nombre}"/>
-                                    </h:selectOneMenu>
-                                </div>
+                                    <label for="destino">Destino:</label>
+                                    <h:inputText id="destino" value="#{ventas.venta.destino}" ></h:inputText> 
+                                </div>                                
                             </div>
                             <div class="col-6">
                                 <div class="campo-form">
-                                    <label for="cantidad">Cantidad</label>
-                                    <h:inputText id="cantidad" value="#{inventario.producto.cantidad}"></h:inputText>
+                                    <label for="fecha">Fecha</label>
+                                    <h:inputText  style='color:snow;' id="fecha" value='#{ventas.venta.fecha}' disabled="true"></h:inputText>
                                 </div>
                                 <div class="campo-form">
-                                    <label for="precioCompra">Precio compra</label>
-                                    <h:inputText id="precioCompra" value="#{inventario.producto.precioCompra}"></h:inputText>
-                                </div>
-                                <div class="campo-form">
-                                    <h:outputLabel for="marca">Marca: </h:outputLabel>
-                                    <h:selectOneMenu id="marca" value="#{inventario.marcaAux}">
-                                        <f:selectItems value="#{inventario.marcaFacade.findAll()}" var="item" 
-                                                       itemValue="#{item.idmarca}" itemLabel="#{item.nombre}"/>
+                                    <h:outputLabel  style='color:snow;' for="idestado">Estado:</h:outputLabel>                
+                                    <h:selectOneMenu id="idestado" value="#{ventas.idestadoVenta}">
+                                        <f:selectItems value="#{ventas.findAllEstados()}" var="item" 
+                                                       itemValue="#{item.idestado}" itemLabel="#{item.nombre}"/>
                                     </h:selectOneMenu>
                                 </div>
-                            </div>
-                            <div class="campo-form">
-                                <h:outputLabel for="descripcion">Descripción: </h:outputLabel>
-                                <h:inputText id="descripcion" value="#{inventario.producto.descripcion}"></h:inputText><br></br>
 
-                            </div>                            
+                            </div>
+                            <div class='row'>
+                                <label for="fecha">Comprador</label>
+                                <div class='col-6'>
+                                    <div class="campo-form">                                        
+                                        <h:inputText id="nombre" value="#{ventas.venta.usuarioIdusuario.nombre}" disabled="true" style='color:snow;' ></h:inputText>
+                                    </div>
+                                </div>  
+                                <div class='col-6'>
+                                    <div class="campo-form">                                        
+                                        <h:inputText id="apellido" value="#{ventas.venta.usuarioIdusuario.apellido}" disabled="true" style='color:snow;'></h:inputText>
+                                    </div>
+                                </div>  
+                            </div>                           
                         </div>
                         <div class="row btn-formulario">
-                            <h:commandButton value="Editar" action="#{inventario.editar()}"></h:commandButton>
+                            <h:commandButton value="Editar" action="#{ventas.editar()}"></h:commandButton>
                         </div>
                     </h:form>
                 </div>
@@ -411,7 +376,7 @@
 
         <script src="../JS.js"></script>
 
-    </h:body>
+    
 </html>
 
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia;
+package persistencia.entidades;
 
 import java.io.Serializable;
 import java.util.List;
@@ -27,43 +27,43 @@ import javax.validation.constraints.Size;
  * @author david
  */
 @Entity
-@Table(name = "estad_venta")
+@Table(name = "categoria")
 @NamedQueries({
-    @NamedQuery(name = "EstadVenta.findAll", query = "SELECT e FROM EstadVenta e")})
-public class EstadVenta implements Serializable {
+    @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c")})
+public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idestado")
-    private Integer idestado;
+    @Column(name = "idcategoria")
+    private Integer idcategoria;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 15)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estadoIdestado", fetch = FetchType.LAZY)
-    private List<Venta> ventaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoIdtipo", fetch = FetchType.LAZY)
+    private List<Producto> productoList;
 
-    public EstadVenta() {
+    public Categoria() {
     }
 
-    public EstadVenta(Integer idestado) {
-        this.idestado = idestado;
+    public Categoria(Integer idcategoria) {
+        this.idcategoria = idcategoria;
     }
 
-    public EstadVenta(Integer idestado, String nombre) {
-        this.idestado = idestado;
+    public Categoria(Integer idcategoria, String nombre) {
+        this.idcategoria = idcategoria;
         this.nombre = nombre;
     }
 
-    public Integer getIdestado() {
-        return idestado;
+    public Integer getIdcategoria() {
+        return idcategoria;
     }
 
-    public void setIdestado(Integer idestado) {
-        this.idestado = idestado;
+    public void setIdcategoria(Integer idcategoria) {
+        this.idcategoria = idcategoria;
     }
 
     public String getNombre() {
@@ -74,29 +74,29 @@ public class EstadVenta implements Serializable {
         this.nombre = nombre;
     }
 
-    public List<Venta> getVentaList() {
-        return ventaList;
+    public List<Producto> getProductoList() {
+        return productoList;
     }
 
-    public void setVentaList(List<Venta> ventaList) {
-        this.ventaList = ventaList;
+    public void setProductoList(List<Producto> productoList) {
+        this.productoList = productoList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idestado != null ? idestado.hashCode() : 0);
+        hash += (idcategoria != null ? idcategoria.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EstadVenta)) {
+        if (!(object instanceof Categoria)) {
             return false;
         }
-        EstadVenta other = (EstadVenta) object;
-        if ((this.idestado == null && other.idestado != null) || (this.idestado != null && !this.idestado.equals(other.idestado))) {
+        Categoria other = (Categoria) object;
+        if ((this.idcategoria == null && other.idcategoria != null) || (this.idcategoria != null && !this.idcategoria.equals(other.idcategoria))) {
             return false;
         }
         return true;
@@ -104,7 +104,7 @@ public class EstadVenta implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencia.EstadVenta[ idestado=" + idestado + " ]";
+        return "persistencia.Categoria[ idcategoria=" + idcategoria + " ]";
     }
     
 }

@@ -7,7 +7,7 @@ package persistencia.model;
 
 import java.util.List;
 import javax.ejb.Local;
-import persistencia.Movil;
+import persistencia.entidades.Movil;
 
 /**
  *

@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia;
+package persistencia.entidades;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,50 +18,60 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author david
  */
 @Entity
-@Table(name = "movil")
+@Table(name = "correo")
 @NamedQueries({
-    @NamedQuery(name = "Movil.findAll", query = "SELECT m FROM Movil m")})
-public class Movil implements Serializable {
+    @NamedQuery(name = "Correo.findAll", query = "SELECT c FROM Correo c")})
+public class Correo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idmovil")
-    private Integer idmovil;
-    @Column(name = "numero")
-    private BigInteger numero;
+    @Column(name = "idcorreo")
+    private Integer idcorreo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "direccion_correo")
+    private String direccionCorreo;
     @JoinColumn(name = "usuario_idusuario", referencedColumnName = "idusuario")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario usuarioIdusuario;
 
-    public Movil() {
+    public Correo() {
     }
 
-    public Movil(Integer idmovil) {
-        this.idmovil = idmovil;
+    public Correo(Integer idcorreo) {
+        this.idcorreo = idcorreo;
     }
 
-    public Integer getIdmovil() {
-        return idmovil;
+    public Correo(Integer idcorreo, String direccionCorreo) {
+        this.idcorreo = idcorreo;
+        this.direccionCorreo = direccionCorreo;
     }
 
-    public void setIdmovil(Integer idmovil) {
-        this.idmovil = idmovil;
+    public Integer getIdcorreo() {
+        return idcorreo;
     }
 
-    public BigInteger getNumero() {
-        return numero;
+    public void setIdcorreo(Integer idcorreo) {
+        this.idcorreo = idcorreo;
     }
 
-    public void setNumero(BigInteger numero) {
-        this.numero = numero;
+    public String getDireccionCorreo() {
+        return direccionCorreo;
+    }
+
+    public void setDireccionCorreo(String direccionCorreo) {
+        this.direccionCorreo = direccionCorreo;
     }
 
     public Usuario getUsuarioIdusuario() {
@@ -76,18 +85,18 @@ public class Movil implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idmovil != null ? idmovil.hashCode() : 0);
+        hash += (idcorreo != null ? idcorreo.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Movil)) {
+        if (!(object instanceof Correo)) {
             return false;
         }
-        Movil other = (Movil) object;
-        if ((this.idmovil == null && other.idmovil != null) || (this.idmovil != null && !this.idmovil.equals(other.idmovil))) {
+        Correo other = (Correo) object;
+        if ((this.idcorreo == null && other.idcorreo != null) || (this.idcorreo != null && !this.idcorreo.equals(other.idcorreo))) {
             return false;
         }
         return true;
@@ -95,7 +104,7 @@ public class Movil implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencia.Movil[ idmovil=" + idmovil + " ]";
+        return "persistencia.Correo[ idcorreo=" + idcorreo + " ]";
     }
     
 }

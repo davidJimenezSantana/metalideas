@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia;
+package persistencia.entidades;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -18,7 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -26,52 +25,45 @@ import javax.validation.constraints.Size;
  * @author david
  */
 @Entity
-@Table(name = "correo")
+@Table(name = "direccion")
 @NamedQueries({
-    @NamedQuery(name = "Correo.findAll", query = "SELECT c FROM Correo c")})
-public class Correo implements Serializable {
+    @NamedQuery(name = "Direccion.findAll", query = "SELECT d FROM Direccion d")})
+public class Direccion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idcorreo")
-    private Integer idcorreo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "direccion_correo")
-    private String direccionCorreo;
+    @Column(name = "iddireccion")
+    private Integer iddireccion;
+    @Size(max = 20)
+    @Column(name = "localizacion")
+    private String localizacion;
     @JoinColumn(name = "usuario_idusuario", referencedColumnName = "idusuario")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario usuarioIdusuario;
 
-    public Correo() {
+    public Direccion() {
     }
 
-    public Correo(Integer idcorreo) {
-        this.idcorreo = idcorreo;
+    public Direccion(Integer iddireccion) {
+        this.iddireccion = iddireccion;
     }
 
-    public Correo(Integer idcorreo, String direccionCorreo) {
-        this.idcorreo = idcorreo;
-        this.direccionCorreo = direccionCorreo;
+    public Integer getIddireccion() {
+        return iddireccion;
     }
 
-    public Integer getIdcorreo() {
-        return idcorreo;
+    public void setIddireccion(Integer iddireccion) {
+        this.iddireccion = iddireccion;
     }
 
-    public void setIdcorreo(Integer idcorreo) {
-        this.idcorreo = idcorreo;
+    public String getLocalizacion() {
+        return localizacion;
     }
 
-    public String getDireccionCorreo() {
-        return direccionCorreo;
-    }
-
-    public void setDireccionCorreo(String direccionCorreo) {
-        this.direccionCorreo = direccionCorreo;
+    public void setLocalizacion(String localizacion) {
+        this.localizacion = localizacion;
     }
 
     public Usuario getUsuarioIdusuario() {
@@ -85,18 +77,18 @@ public class Correo implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idcorreo != null ? idcorreo.hashCode() : 0);
+        hash += (iddireccion != null ? iddireccion.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Correo)) {
+        if (!(object instanceof Direccion)) {
             return false;
         }
-        Correo other = (Correo) object;
-        if ((this.idcorreo == null && other.idcorreo != null) || (this.idcorreo != null && !this.idcorreo.equals(other.idcorreo))) {
+        Direccion other = (Direccion) object;
+        if ((this.iddireccion == null && other.iddireccion != null) || (this.iddireccion != null && !this.iddireccion.equals(other.iddireccion))) {
             return false;
         }
         return true;
@@ -104,7 +96,7 @@ public class Correo implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencia.Correo[ idcorreo=" + idcorreo + " ]";
+        return "persistencia.Direccion[ iddireccion=" + iddireccion + " ]";
     }
     
 }

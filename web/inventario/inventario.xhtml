@@ -41,19 +41,23 @@
 
                 $('#tabla_inventario').DataTable({
                     dom: 'Bfrtip',
+                    paging: false,
+                    scrollY: 400,
+                    language: {url: '//cdn.datatables.net/plug-ins/1.13.1/i18n/es-MX.json'},
+
                     buttons: [
                         'copy', 'csv', 'excel', 'pdf', 'print'
                     ]
                 });
-
             });
 
-            function cargar(id, nombre, venta, compra, cantidad) {
+            function cargar(id, nombre, venta, compra, cantidad,desc) {
                 document.getElementById("formularioEditar:idProducto").value = id;
                 document.getElementById("formularioEditar:nombre").value = nombre;
                 document.getElementById("formularioEditar:precioVenta").value = venta;
                 document.getElementById("formularioEditar:precioCompra").value = compra;
                 document.getElementById("formularioEditar:cantidad").value = cantidad;
+                document.getElementById("formularioEditar:descripcion").value = desc;
             }
 
         </script>
@@ -113,7 +117,7 @@
                     </ul>
                     <ul class="nav-links">                        
                         <li>
-                            <a href="ventas/ventas.xhtml">
+                            <a href="../ventas/ventas.xhtml">
                                 <i class='link-icon bx bx-spreadsheet'></i>
                                 <span class="link-nombre">GESTIÓN VENTAS</span>
                             </a>
@@ -223,7 +227,7 @@
                                 <f:facet name="header"> Acción </f:facet>
                                 <h:form id="formulario">
                                     <div class="opc-tabla">
-                                        <a class='bx bx-cog iconos abrirCerrarFormEdit' id="opc-form" href="javascript:cargar('#{item.idproducto}','#{item.nombre}','#{item.precioVenta}','#{item.precioCompra}','#{item.cantidad}')">Editar</a>     
+                                        <a class='bx bx-cog iconos abrirCerrarFormEdit' id="opc-form" href="javascript:cargar('#{item.idproducto}','#{item.nombre}','#{item.precioVenta}','#{item.precioCompra}','#{item.cantidad}','#{item.descripcion}')">Editar</a>     
                                         <h:commandButton  action="#{inventario.borrar(item.idproducto)}" value="Eliminar"></h:commandButton>                                        
                                     </div>
                                 </h:form>                                
@@ -325,7 +329,7 @@
                                 </div>
                             </div>
                             <div class="campo-form">
-                                <label for="descripcion">Descripción</label>
+                                <label for="descripcion"> Descripción</label>
                                 <h:inputText id="descripcion" value="#{inventario.producto.descripcion}"></h:inputText>                               
                             </div>                            
                         </div>

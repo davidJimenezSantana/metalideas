@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia;
+package persistencia.entidades;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,43 +28,45 @@ import javax.validation.constraints.Size;
  * @author david
  */
 @Entity
-@Table(name = "marca")
+@Table(name = "rol")
 @NamedQueries({
-    @NamedQuery(name = "Marca.findAll", query = "SELECT m FROM Marca m")})
-public class Marca implements Serializable {
+    @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")})
+public class Rol implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idmarca")
-    private Integer idmarca;
+    @Column(name = "idrol")
+    private Integer idrol;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "marcaIdmarca", fetch = FetchType.LAZY)
-    private List<Producto> productoList;
+    @ManyToMany(mappedBy = "rolList", fetch = FetchType.LAZY)
+    private List<Permiso> permisoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rolIdrol", fetch = FetchType.LAZY)
+    private List<Usuario> usuarioList;
 
-    public Marca() {
+    public Rol() {
     }
 
-    public Marca(Integer idmarca) {
-        this.idmarca = idmarca;
+    public Rol(Integer idrol) {
+        this.idrol = idrol;
     }
 
-    public Marca(Integer idmarca, String nombre) {
-        this.idmarca = idmarca;
+    public Rol(Integer idrol, String nombre) {
+        this.idrol = idrol;
         this.nombre = nombre;
     }
 
-    public Integer getIdmarca() {
-        return idmarca;
+    public Integer getIdrol() {
+        return idrol;
     }
 
-    public void setIdmarca(Integer idmarca) {
-        this.idmarca = idmarca;
+    public void setIdrol(Integer idrol) {
+        this.idrol = idrol;
     }
 
     public String getNombre() {
@@ -74,29 +77,37 @@ public class Marca implements Serializable {
         this.nombre = nombre;
     }
 
-    public List<Producto> getProductoList() {
-        return productoList;
+    public List<Permiso> getPermisoList() {
+        return permisoList;
     }
 
-    public void setProductoList(List<Producto> productoList) {
-        this.productoList = productoList;
+    public void setPermisoList(List<Permiso> permisoList) {
+        this.permisoList = permisoList;
+    }
+
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idmarca != null ? idmarca.hashCode() : 0);
+        hash += (idrol != null ? idrol.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Marca)) {
+        if (!(object instanceof Rol)) {
             return false;
         }
-        Marca other = (Marca) object;
-        if ((this.idmarca == null && other.idmarca != null) || (this.idmarca != null && !this.idmarca.equals(other.idmarca))) {
+        Rol other = (Rol) object;
+        if ((this.idrol == null && other.idrol != null) || (this.idrol != null && !this.idrol.equals(other.idrol))) {
             return false;
         }
         return true;
@@ -104,7 +115,7 @@ public class Marca implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencia.Marca[ idmarca=" + idmarca + " ]";
+        return "persistencia.Rol[ idrol=" + idrol + " ]";
     }
     
 }

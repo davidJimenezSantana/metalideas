@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia;
+package persistencia.entidades;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,52 +19,50 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 /**
  *
  * @author david
  */
 @Entity
-@Table(name = "direccion")
+@Table(name = "movil")
 @NamedQueries({
-    @NamedQuery(name = "Direccion.findAll", query = "SELECT d FROM Direccion d")})
-public class Direccion implements Serializable {
+    @NamedQuery(name = "Movil.findAll", query = "SELECT m FROM Movil m")})
+public class Movil implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "iddireccion")
-    private Integer iddireccion;
-    @Size(max = 20)
-    @Column(name = "localizacion")
-    private String localizacion;
+    @Column(name = "idmovil")
+    private Integer idmovil;
+    @Column(name = "numero")
+    private BigInteger numero;
     @JoinColumn(name = "usuario_idusuario", referencedColumnName = "idusuario")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario usuarioIdusuario;
 
-    public Direccion() {
+    public Movil() {
     }
 
-    public Direccion(Integer iddireccion) {
-        this.iddireccion = iddireccion;
+    public Movil(Integer idmovil) {
+        this.idmovil = idmovil;
     }
 
-    public Integer getIddireccion() {
-        return iddireccion;
+    public Integer getIdmovil() {
+        return idmovil;
     }
 
-    public void setIddireccion(Integer iddireccion) {
-        this.iddireccion = iddireccion;
+    public void setIdmovil(Integer idmovil) {
+        this.idmovil = idmovil;
     }
 
-    public String getLocalizacion() {
-        return localizacion;
+    public BigInteger getNumero() {
+        return numero;
     }
 
-    public void setLocalizacion(String localizacion) {
-        this.localizacion = localizacion;
+    public void setNumero(BigInteger numero) {
+        this.numero = numero;
     }
 
     public Usuario getUsuarioIdusuario() {
@@ -77,18 +76,18 @@ public class Direccion implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (iddireccion != null ? iddireccion.hashCode() : 0);
+        hash += (idmovil != null ? idmovil.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Direccion)) {
+        if (!(object instanceof Movil)) {
             return false;
         }
-        Direccion other = (Direccion) object;
-        if ((this.iddireccion == null && other.iddireccion != null) || (this.iddireccion != null && !this.iddireccion.equals(other.iddireccion))) {
+        Movil other = (Movil) object;
+        if ((this.idmovil == null && other.idmovil != null) || (this.idmovil != null && !this.idmovil.equals(other.idmovil))) {
             return false;
         }
         return true;
@@ -96,7 +95,7 @@ public class Direccion implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencia.Direccion[ iddireccion=" + iddireccion + " ]";
+        return "persistencia.Movil[ idmovil=" + idmovil + " ]";
     }
     
 }

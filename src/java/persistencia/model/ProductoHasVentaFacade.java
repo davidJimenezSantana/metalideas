@@ -8,7 +8,7 @@ package persistencia.model;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import persistencia.ProductoHasVenta;
+import persistencia.entidades.ProductoHasVenta;
 
 /**
  *

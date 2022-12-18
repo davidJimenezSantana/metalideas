@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistencia;
+package persistencia.entidades;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,9 +15,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -30,48 +27,43 @@ import javax.validation.constraints.Size;
  * @author david
  */
 @Entity
-@Table(name = "metodo_pago")
+@Table(name = "estad_venta")
 @NamedQueries({
-    @NamedQuery(name = "MetodoPago.findAll", query = "SELECT m FROM MetodoPago m")})
-public class MetodoPago implements Serializable {
+    @NamedQuery(name = "EstadVenta.findAll", query = "SELECT e FROM EstadVenta e")})
+public class EstadVenta implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idmetodo_pago")
-    private Integer idmetodoPago;
+    @Column(name = "idestado")
+    private Integer idestado;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 10)
     @Column(name = "nombre")
     private String nombre;
-    @JoinTable(name = "usuario_has_metodo_pago", joinColumns = {
-        @JoinColumn(name = "metodo_pago_idmetodo_pago", referencedColumnName = "idmetodo_pago")}, inverseJoinColumns = {
-        @JoinColumn(name = "usuario_idusuario", referencedColumnName = "idusuario")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Usuario> usuarioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "metodoPagoIdmetodoPago", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estadoIdestado", fetch = FetchType.LAZY)
     private List<Venta> ventaList;
 
-    public MetodoPago() {
+    public EstadVenta() {
     }
 
-    public MetodoPago(Integer idmetodoPago) {
-        this.idmetodoPago = idmetodoPago;
+    public EstadVenta(Integer idestado) {
+        this.idestado = idestado;
     }
 
-    public MetodoPago(Integer idmetodoPago, String nombre) {
-        this.idmetodoPago = idmetodoPago;
+    public EstadVenta(Integer idestado, String nombre) {
+        this.idestado = idestado;
         this.nombre = nombre;
     }
 
-    public Integer getIdmetodoPago() {
-        return idmetodoPago;
+    public Integer getIdestado() {
+        return idestado;
     }
 
-    public void setIdmetodoPago(Integer idmetodoPago) {
-        this.idmetodoPago = idmetodoPago;
+    public void setIdestado(Integer idestado) {
+        this.idestado = idestado;
     }
 
     public String getNombre() {
@@ -80,14 +72,6 @@ public class MetodoPago implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public List<Usuario> getUsuarioList() {
-        return usuarioList;
-    }
-
-    public void setUsuarioList(List<Usuario> usuarioList) {
-        this.usuarioList = usuarioList;
     }
 
     public List<Venta> getVentaList() {
@@ -101,18 +85,18 @@ public class MetodoPago implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idmetodoPago != null ? idmetodoPago.hashCode() : 0);
+        hash += (idestado != null ? idestado.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MetodoPago)) {
+        if (!(object instanceof EstadVenta)) {
             return false;
         }
-        MetodoPago other = (MetodoPago) object;
-        if ((this.idmetodoPago == null && other.idmetodoPago != null) || (this.idmetodoPago != null && !this.idmetodoPago.equals(other.idmetodoPago))) {
+        EstadVenta other = (EstadVenta) object;
+        if ((this.idestado == null && other.idestado != null) || (this.idestado != null && !this.idestado.equals(other.idestado))) {
             return false;
         }
         return true;
@@ -120,7 +104,7 @@ public class MetodoPago implements Serializable {
 
     @Override
     public String toString() {
-        return "persistencia.MetodoPago[ idmetodoPago=" + idmetodoPago + " ]";
+        return "persistencia.EstadVenta[ idestado=" + idestado + " ]";
     }
     
 }
